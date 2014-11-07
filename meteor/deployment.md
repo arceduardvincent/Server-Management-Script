@@ -99,7 +99,7 @@ In your `my-meteor-deployment` directory edit the `mup.json` to this format belo
 
 	```
 
-###### Meteor Configuration for nginx
+####  Meteor Configuration for nginx
 	* Open to the terminal then browse `<yourdeveplment.pem>`.
 	* excute this command `ssh -i <yourdeveplment.pem>ubuntu@<your.host.ip>`.
 	* excute `sudo apt-get install nginx`.
@@ -135,7 +135,7 @@ In your `my-meteor-deployment` directory edit the `mup.json` to this format belo
 
 	* Restart our nginx, execute `sudo service nginx restart`
 
-###### Kadira Setup
+#### Kadira Setup
 	* Login to https://ui.kadira.io/
 	* Create a new App after your create it will redirect you to your kadira credential that you will use later.
 
