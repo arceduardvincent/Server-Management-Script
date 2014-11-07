@@ -1,6 +1,6 @@
-# Deployment for Meteor
+## Deployment for Meteor
 
-### Requirements
+#### Requirements
 * Virtual Servers for Cloud (EC2 Instance)
 * Meteor Apllication
 * Meteor Up  
@@ -98,3 +98,57 @@ In your `my-meteor-deployment` directory edit the `mup.json` to this format belo
 	mup deploy
 
 	```
+
+###### Meteor Configuration for nginx
+	* Open to the terminal then browse `<yourdeveplment.pem>`.
+	* excute this command `ssh -i <yourdeveplment.pem>ubuntu@<your.host.ip>`.
+	* excute `sudo apt-get install nginx`.
+	* browse to `/etc/nginx/conf.d`.
+	* add a config for webproxy for our meteor app, execute a command `nano deploy.conf`.
+		* copy our config below.
+		```
+		# we're in the http context here
+		map $http_upgrade $connection_upgrade {
+		default upgrade;
+		''      close;
+		}
+
+		# the Meteor / Node.js app server
+		server {
+		    server_name yourdomain.com;
+
+		    access_log /etc/nginx/logs/yourapp.access;
+		    error_log /etc/nginx/logs/yourapp.error error;
+
+		location / {
+		    proxy_pass http://localhost:3000;
+		    proxy_set_header X-Real-IP $remote_addr;  # http://wiki.nginx.org/HttpProxyModule
+		    proxy_set_header Host $host;  # pass the host header - http://wiki.nginx.org/HttpProxyModule#proxy_pass
+		    proxy_http_version 1.1;  # recommended with keepalive connections - http://nginx.org/en/docs/http/ngx_http_proxy_module.html#proxy_http_version
+		    # WebSocket proxying - from http://nginx.org/en/docs/http/websocket.html
+		    proxy_set_header Upgrade $http_upgrade;
+		    proxy_set_header Connection $connection_upgrade;
+		}
+
+		}
+		```
+
+	* Restart our nginx, execute `sudo service nginx restart`
+
+###### Kadira Setup
+	* Login to https://ui.kadira.io/
+	* Create a new App after your create it will redirect you to your kadira credential that you will use later.
+
+	Install and Configure Kadira
+	```
+	meteor add meteorhacks:kadira
+	# if you've not yet migrated to Meteor 0.9 run following
+	# mrt add kadira
+	```
+	Then configure your app by adding this code into any file in your app’s server directory.
+	I preffer to make a new file name `kadira.js`.Edit the file add this line
+	```
+	Kadira.connect('<appId>', '<appSecret>')
+	```
+	* Done.
+	Note: when you browse to your app page kadira will scan your page performance.
