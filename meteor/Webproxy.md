@@ -2,7 +2,7 @@
 
 ##### Reffrence:
 * http://nginx.org/en/docs/http/configuring_https_servers.html
-*http://www.meteorpedia.com/read/nginx
+* http://www.meteorpedia.com/read/nginx
 * https://www.digitalocean.com/community/tutorials/how-to-deploy-a-meteor-js-application-on-ubuntu-14-04-with-nginx
 
 
