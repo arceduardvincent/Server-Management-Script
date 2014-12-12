@@ -37,3 +37,7 @@ location / {
 
 }
 ```
+
+##### How To Create an SSL Certificate on Nginx for Ubuntu 14.04 
+Reffrence
+https://www.digitalocean.com/community/tutorials/how-to-create-an-ssl-certificate-on-nginx-for-ubuntu-14-04
