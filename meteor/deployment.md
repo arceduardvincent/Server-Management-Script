@@ -76,7 +76,7 @@ In your `my-meteor-deployment` directory edit the `mup.json` to this format belo
   "env": {
     "PORT": 80,
     "ROOT_URL": "http://myapp.com",
-    "Mongo_URL": "mongodb://localhost:27017/mixlinDB"
+    "Mongo_URL": "mongodb://localhost:27017/AppDB"
     "MAIL_URL": "smtp://postmaster%40myapp.mailgun.org:adj87sjhd7s@smtp.mailgun.org:587/"
   },
 
